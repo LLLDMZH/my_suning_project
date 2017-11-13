@@ -1,0 +1,13 @@
+package com.suning.manager.service.test;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.suning.facade.manager.service.ItemCatFacade;
+
+public class FacadeImplGetTest {
+	public static void main(String[] args) {
+		ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("src/main/resources/spring/applicationContext.xml.xml");
+		ItemCatFacade facade = (ItemCatFacade)classPathXmlApplicationContext.getBean("itemCatFacade");
+		System.out.println(facade);
+	}
+}

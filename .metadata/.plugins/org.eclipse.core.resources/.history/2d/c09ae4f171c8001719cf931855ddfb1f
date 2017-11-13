@@ -1,0 +1,6 @@
+package com.suning.manager.service.biz;
+
+@Service("itemCatBiz")
+public class ItemCatBiz {
+
+}

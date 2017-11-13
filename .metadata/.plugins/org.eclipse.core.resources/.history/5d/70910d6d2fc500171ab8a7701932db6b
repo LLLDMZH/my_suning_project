@@ -1,0 +1,10 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:3306/suning_usermanager?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+jdbc.username=root
+jdbc.password=123456
+filters=stat,log4j,wall
+maxActive=100
+initialSize=5
+timeBetweenEvictionRunsMillis=60000
+maxWait=10000
+minIdle=5

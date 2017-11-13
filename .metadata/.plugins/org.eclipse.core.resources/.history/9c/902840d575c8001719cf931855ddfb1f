@@ -1,0 +1,12 @@
+package com.suning.manager.service.biz;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.manager.service.dao.ItemCatDao;
+
+@Service("itemCatBiz")
+public class ItemCatBiz {
+	@Autowired
+	private ItemCatDao itemCatDao;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 分页助手 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<property name="reasonable" value="true" />
+		</plugin>
+	</plugins>
+
+	<!-- ******************* 支持多数据库厂商 -->
+	<!-- 别名 对应的类是 VendorDatabaseIdProvider :作用是得到数据库厂商标识(驱动getDataBaseProductName() 
+		=======>MySQL,Oracle,SQL Server,xxx)，mybatis就能根据数据库厂商标识来执行不同sql -->
+	<databaseIdProvider type="DB_VENDOR">
+		<property name="MySQL" value="mysql" />
+		<property name="Oracle" value="oracle" />
+		<property name="SQL Server" value="sqlserver" />
+	</databaseIdProvider>
+</configuration>

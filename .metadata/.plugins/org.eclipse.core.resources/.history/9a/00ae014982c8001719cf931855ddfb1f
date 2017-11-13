@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 切换数据库 -->
+
+	<properties resource="jdbc.properties"/> 
+	<!-- 定义类型别名 -->
+	<!-- 
+	<typeAliases>
+		将指定包中所有类的简单类名 当作其别名  用这种形式 
+		<package name="com.bjpowernode.beans"/> 
+	</typeAliases>
+	 -->
+	 
+	<!-- 配置运行环境 -->      
+	<environments default="dev_mysql">
+		<environment id="dev_oracle">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="${oracle.driver}"/>
+				<property name="url" value="${oracle.url}"/>
+				<property name="username" value="${oracle.user}"/>
+				<property name="password" value="${oracle.password}"/>
+			</dataSource>
+		</environment>
+		<environment id="dev_mysql">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="${mysql.driver}"/>
+				<property name="url" value="${mysql.url}"/>
+				<property name="username" value="${mysql.user}"/>
+				<property name="password" value="${mysql.password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- ******************* 支持多数据库厂商   -->
+	<!-- 别名 对应的类是 VendorDatabaseIdProvider
+	 :作用是得到数据库厂商标识(驱动getDataBaseProductName()
+	 =======>MySQL,Oracle,SQL Server,xxx)，mybatis就能根据数据库厂商标识来执行不同sql-->
+		
+	<databaseIdProvider type="DB_VENDOR"> 
+		<property name="MySQL" value="mysql"/>
+		<property name="Oracle" value="oracle"/>
+		<property name="SQL Server" value="sqlserver"/>
+	</databaseIdProvider>
+	
+	<!-- 注册映射文件 -->
+	<mappers>
+		<package name="com.bjpowernode.dao"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,8 @@
+package com.suning.manager.service.biz;
+
+import org.springframework.stereotype.Service;
+
+@Service("itemCatBiz")
+public class ItemCatBiz {
+
+}
