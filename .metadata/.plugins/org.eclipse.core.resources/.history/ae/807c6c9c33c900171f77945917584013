@@ -1,0 +1,15 @@
+package com.suning.facade.manager.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.service.ItemFacade;
+
+@Service("itemFacadeImpl")
+public class ItemFacadeImpl implements ItemFacade{
+
+	@Override
+	public int saveItem() {
+		return 0;
+	}
+	
+}

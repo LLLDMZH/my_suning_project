@@ -1,2 +1,6 @@
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\entity\ItemCat.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemCatFacade.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\entity\Item.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\entity\ItemDescription.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemFacade.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemDescriptionFacade.java

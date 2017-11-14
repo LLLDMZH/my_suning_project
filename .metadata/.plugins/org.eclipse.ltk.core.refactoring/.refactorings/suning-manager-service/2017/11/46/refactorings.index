@@ -25,3 +25,6 @@
 1510631142020	Delete element
 1510640192824	Rename type 'AbstractBaseService'
 1510640834414	Extract local variable 'itemCat'
+1510645651579	Rename type 'ItemDescriptionMapper'
+1510651047134	Rename type 'AbstractBaseBiz'
+1510661910614	Copy compilation unit

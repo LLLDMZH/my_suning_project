@@ -1,0 +1,7 @@
+package com.suning.manager.service.biz;
+
+import com.suning.facade.manager.entity.Item;
+
+public class ItemBiz extends BaseBiz<Item>{
+
+}

@@ -1,4 +1,10 @@
-E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\biz\AbstractBaseBiz.java
+E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\biz\ItemDescriptionBiz.java
+E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\facade\manager\service\impl\ItemDescriptionFacadeImpl.java
 E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\biz\ItemCatBiz.java
 E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\facade\manager\service\impl\ItemCatFacadeImpl.java
+E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\facade\manager\service\impl\ItemFacadeImpl.java
+E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\biz\ItemBiz.java
+E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\dao\ItemDescriptionDao.java
 E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\dao\ItemCatDao.java
+E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\dao\ItemDao.java
+E:\java项目\suning\suning-manager\suning-manager-service\src\main\java\com\suning\manager\service\biz\BaseBiz.java

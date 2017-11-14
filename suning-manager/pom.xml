@@ -11,6 +11,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<!-- 聚合工程 导入插件 -->
+
 	<!-- 子模块 -->
 	<modules>
 		<module>suning-manager-facade</module>
@@ -19,6 +20,11 @@
 	</modules>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.suning.common</groupId>
+			<artifactId>suning-common</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

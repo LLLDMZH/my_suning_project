@@ -1,0 +1,5 @@
+package com.suning.manager.common.controller;
+
+public class FileUploadController {
+
+}

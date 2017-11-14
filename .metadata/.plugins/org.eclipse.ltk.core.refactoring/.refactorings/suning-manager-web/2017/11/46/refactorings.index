@@ -7,3 +7,7 @@
 1510586194671	Delete element
 1510586283287	Copy folder
 1510586349368	Delete elements
+1510662466050	Extract local variable 'itemDescription'
+1510665033535	Extract local variable 'success'
+1510675512086	Rename type 'PicUploadController'
+1510675702759	Delete element

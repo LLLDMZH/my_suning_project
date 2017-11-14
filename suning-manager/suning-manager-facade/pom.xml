@@ -10,12 +10,6 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>com.suning.common</groupId>
-			<artifactId>suning-common</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
 		<!-- mybatis逆向生成工具 -->
 		<dependency>
 			<groupId>org.mybatis.generator</groupId>

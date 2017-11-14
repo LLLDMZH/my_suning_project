@@ -25,24 +25,26 @@
 		targetProject:目标工程
 	 -->
     <javaModelGenerator 
-    	targetPackage="com.suning.manager.facade.entity" 
+    	targetPackage="com.suning.facade.manager.entity" 
     	targetProject=".\src\main\java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
 	<!-- sqlMapGenerator :sql映射生成定义 -->
+<!-- 
     <sqlMapGenerator targetPackage="mybatis.mappers"  
     				targetProject=".\src\main\resources">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
-
+ -->
 	<!-- 指定Mapper接口所在的位置 -->
+<!-- 
     <javaClientGenerator type="XMLMAPPER" targetPackage="com.suning.manager.facade.mapper"  targetProject=".\src\main\java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
-
+ -->
 	<!-- 指定要逆向分析哪些表 ,根据表-->
-	<table tableName="suning_shopping_items" domainObjectName="ItemCat"></table>
+	<table tableName="suning_item_desc" domainObjectName="ItemDescription"></table>
   </context>
 </generatorConfiguration>

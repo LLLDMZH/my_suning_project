@@ -28,7 +28,7 @@
 	        </tr>
 	        <tr>
 	            <td>库存数量:</td>
-	            <td><input class="easyui-numberbox" type="text" name="num" data-options="min:1,max:99999999,precision:0,required:true" /></td>
+	            <td><input class="easyui-numberbox" type="text" name="number" data-options="min:1,max:99999999,precision:0,required:true" /></td>
 	        </tr>
 	        <tr>
 	            <td>条形码:</td>
@@ -81,9 +81,12 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		//处理商品的价格的单位，将元转化为分
+		
+		//获取商品价格并且转换为分
 		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
-		//将编辑器中的内容同步到隐藏多行文本中
+		
+		
+		//需要处理富文本编辑器的内容 同步到 隐藏的textarea
 		Editor.sync();
 		
 		//输入的规格参数数据保存为json
@@ -118,14 +121,19 @@
 		
 		//提交到后台的RESTful
 		$.ajax({
-		   type: "POST",
-		   url: "/rest/item",
-		   data: $("#itemAddForm").serialize(),
-		   success: function(msg){
-			   $.messager.alert('提示','新增商品成功!');
-		   },
-		   error: function(){
-			   $.messager.alert('提示','新增商品失败!');
+		   type : "POST",
+		   url : "/item",
+		   data : $("#itemAddForm").serialize(),
+		   statusCode : {
+			   201 : function() {
+				   $.messager.alert('提示','新增商品成功!');
+			   },
+			   500 : function() {
+				   $.messager.alert('提示','新增商品失败!');
+			   },
+			   400 : function() {
+				   $.messager.alert('提示','提交的参数不合法');
+			   }
 		   }
 		});
 	}

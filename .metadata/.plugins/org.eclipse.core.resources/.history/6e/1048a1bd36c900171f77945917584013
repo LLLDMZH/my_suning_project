@@ -1,0 +1,7 @@
+package com.suning.facade.manager.service;
+
+import com.suning.facade.manager.entity.ItemDescription;
+
+public interface ItemDescriptionFacade {
+	int saveItemDescription(ItemDescription itemDescription);
+}

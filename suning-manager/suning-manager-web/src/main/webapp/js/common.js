@@ -23,8 +23,8 @@ var Suning = {
 	// 编辑器参数
 	kingEditorParams : {
 		filePostName  : "uploadFile",
-		uploadJson : '/rest/pic/upload',
-		dir : "image"
+		uploadJson : '/picture/upload',
+		dir : "image"	//类型
 	},
 	// 格式化时间
 	formatDateTime : function(val,row){
@@ -76,7 +76,9 @@ var Suning = {
         			}
         		}
         	}
-        	$(e).click(function(){
+        	
+        	$(e).unbind('click').click(function(){
+        		//parentsUtil不包含本身父辈元素 而是他的直接子元素
         		var form = $(this).parentsUntil("form").parent("form");
         		KindEditor.editor(Suning.kingEditorParams).loadPlugin('multiimage',function(){
         			var editor = this;
@@ -85,7 +87,8 @@ var Suning = {
 							var imgArray = [];
 							KindEditor.each(urlList, function(i, data) {
 								imgArray.push(data.url);
-								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank'><img src='"+data.url+"' width='80' height='50' /></a></li>");
+								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank'>" +
+										"<img src='"+data.url+"' width='80' height='50' /></a></li>");
 							});
 							form.find("[name=image]").val(imgArray.join(","));
 							editor.hideDialog();
@@ -124,11 +127,11 @@ var Suning = {
     			    		method : "GET",
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
-    			    				// 填写到cid中
-    			    				_ele.parent().find("[name=cid]").val(node.id);
-    			    				_ele.next().text(node.text).attr("cid",node.id);
+    			    				_ele.parent().find("[name=cid]").val(node.id);//隐藏input设置商品id
+    			    				_ele.next().text(node.text).attr("cid",node.id);//当前Jquery对象的next设置文本和属性
     			    				$(_win).window('close');
-    			    				if(data && data.Function){
+    			    				if(data && data.Function){//undefined也是false
+    			    					//传入一个function this是传入的this对象
     			    					data.Function.call(this,node);
     			    				}
     			    			}
