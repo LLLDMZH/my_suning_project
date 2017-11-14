@@ -9,6 +9,13 @@
 	<artifactId>suning-manager-facade</artifactId>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>com.suning.common</groupId>
+			<artifactId>suning-common</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
 		<!-- mybatis逆向生成工具 -->
 		<dependency>
 			<groupId>org.mybatis.generator</groupId>
@@ -20,9 +27,15 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -1,0 +1,106 @@
+package com.suning.manager.service.biz;
+
+import java.util.Date;
+import java.util.List;
+
+import com.github.abel533.mapper.Mapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.suning.common.entity.BaseEntity;
+
+public abstract class AbstractBaseService<T extends BaseEntity> {
+	
+	public abstract Mapper<T> getMapper();
+	
+	/**
+	 * 根据主键查询
+	 * @param id
+	 * @return
+	 */
+	public T getById(Long id) {
+		return this.getMapper().selectByPrimaryKey(id);
+	}
+	
+	/**
+	 * 查询所有数据
+	 * @return
+	 */
+	public List<T> listAll() {
+		return this.getMapper().select(null);
+	}
+	
+	/**
+	 * 根据条件查询一条数据
+	 * @param record 条件
+	 * @return
+	 */
+	public T getByWhere(T record) {
+		return this.getMapper().selectOne(record);
+	}
+	
+	/**
+	 * 根据条件查询多条数据
+	 * @param record
+	 * @return
+	 */
+	public List<T> listByWhere(T record) {
+		return this.getMapper().select(record);
+	}
+	
+	/**
+	 * 根据条件分页查询数据
+	 * @param record
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	public PageInfo<T> listPageByWhere(T record, Integer page, Integer rows) {
+		//设置分页参数
+		PageHelper.startPage(page, rows);
+		List<T> list = this.getMapper().select(record);
+		return new PageInfo<T>(list);
+	}
+	
+	/**
+	 * 新增数据
+	 * @param record
+	 * @return
+	 */
+	public Integer save(T record) {
+		record.setCreatedTime(new Date());
+		record.setUpdatedTime(record.getCreatedTime());
+		return this.getMapper().insert(record);
+	}
+	
+	/**
+	 * 实体中不为null的字段才会插入
+	 * @param record
+	 * @return
+	 */
+	public Integer saveSelective(T record) {
+		record.setCreatedTime(new Date());
+		record.setUpdatedTime(record.getCreatedTime());
+		return this.getMapper().insertSelective(record);
+	}
+	
+	/**
+	 * 更新数据
+	 * @param record
+	 * @return
+	 */
+	public Integer update(T record) {
+		record.setUpdatedTime(new Date());
+		return this.getMapper().updateByPrimaryKey(record);
+	}
+	
+	/**
+	 * 更新实体中不为null的字段
+	 * @param record
+	 * @return
+	 */
+	public Integer updateSelective(T record) {
+		return this.getMapper().updateByPrimaryKeySelective(record);
+	}
+	
+	
+}

@@ -1,0 +1,5 @@
+package com.suning.facade.manager.pojo;
+
+public class GetAllItemCatsDTO {
+
+}

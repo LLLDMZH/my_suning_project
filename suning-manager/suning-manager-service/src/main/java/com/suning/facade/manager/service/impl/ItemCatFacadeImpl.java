@@ -23,7 +23,9 @@ public class ItemCatFacadeImpl implements ItemCatFacade{
 	
 	@Override
 	public List<ItemCat> listItemsByParentId(Long parentId) {
-		return itemCatBiz.listItemsByParentId(parentId);
+		ItemCat record = new ItemCat();
+		record.setParentId(parentId);
+		return itemCatBiz.listByWhere(record);
 	}
 
 }

@@ -1,0 +1,21 @@
+package com.suning.manager.service.biz;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.ItemCat;
+import com.suning.manager.service.dao.ItemCatDao;
+
+@Service("itemCatBiz")
+public class ItemCatBiz {
+	@Autowired
+	private ItemCatDao itemCatDao;
+
+	public List<ItemCat> listItemsByParentId(Long parentId) {
+		ItemCat record = new ItemCat();
+		record.setParentId(parentId);
+		return this.itemCatDao.selectByExample(record);
+	}
+}

@@ -1,0 +1,7 @@
+package com.suning.facade.manager.pojo;
+
+import com.suning.facade.manager.entity.ItemCat;
+
+public class GetAllItemCatsDTO extends ItemCat{
+
+}

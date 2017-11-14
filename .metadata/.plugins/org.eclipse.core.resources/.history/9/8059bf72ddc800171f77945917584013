@@ -1,0 +1,13 @@
+package com.suning.facade.manager.pojo;
+
+import com.suning.facade.manager.entity.ItemCat;
+
+public class GetAllItemCatsDTO extends ItemCat{
+	public String getText() {
+		return this.getItemName();
+	}
+	
+	public String getState() {
+		return this.getIsParent() ? "closed" : "open";
+	}
+}

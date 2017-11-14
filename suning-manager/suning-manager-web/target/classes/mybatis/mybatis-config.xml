@@ -8,7 +8,13 @@
 		<plugin interceptor="com.github.pagehelper.PageInterceptor">
 			<property name="reasonable" value="true" />
 		</plugin>
+
+		<plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+			<property name="mappers" value="com.github.abel533.mapper.Mapper" />
+		</plugin>
 	</plugins>
+
+
 
 	<!-- ******************* 支持多数据库厂商 -->
 	<!-- 别名 对应的类是 VendorDatabaseIdProvider :作用是得到数据库厂商标识(驱动getDataBaseProductName() 

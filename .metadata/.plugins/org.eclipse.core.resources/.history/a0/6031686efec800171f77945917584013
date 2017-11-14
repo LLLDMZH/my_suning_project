@@ -1,0 +1,12 @@
+package com.suning.manager.service.biz;
+
+import com.github.abel533.mapper.Mapper;
+
+public abstract class AbstractBaseService<T> {
+	
+	public abstract Mapper<T> getMapper();
+	
+	public T getById(Long id) {
+		return this.getMapper().selectByPrimaryKey(id);
+	}
+}

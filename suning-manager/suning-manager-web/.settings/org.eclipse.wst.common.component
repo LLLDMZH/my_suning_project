@@ -10,6 +10,9 @@
         <dependent-module archiveName="suning-manager-facade-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/suning-manager-facade/suning-manager-facade">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="suning-common-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/suning-common/suning-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="suning-manager-web"/>
         <property name="java-output-path" value="/suning-manager-web/target/classes"/>
     </wb-module>

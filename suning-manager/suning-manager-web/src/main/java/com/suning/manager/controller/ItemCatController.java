@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.suning.facade.manager.entity.ItemCat;
 import com.suning.facade.manager.service.ItemCatFacade;
-import com.suning.manager.service.biz.ItemCatBiz;
 
 @Controller
 @RequestMapping("/item/cat")

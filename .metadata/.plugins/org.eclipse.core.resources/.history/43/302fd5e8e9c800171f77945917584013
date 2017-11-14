@@ -1,0 +1,6 @@
+package com.suning.manager.service;
+
+public abstract AbstractBaseBiz<T> {
+	public T getById();
+	
+}
