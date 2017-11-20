@@ -46,7 +46,7 @@
 	        <tr>
 	            <td>商品描述:</td>
 	            <td>
-	                <textarea style="width:800px;height:300px;visibility:hidden;" name="desc"></textarea>
+	                <textarea style="width:800px;height:300px;visibility:hidden;" name="description"></textarea>
 	            </td>
 	        </tr>
 	        <tr class="params hide">
@@ -67,15 +67,19 @@
 	var Editor;
 	//页面加载完毕
 	$(function(){
-		Editor = Suning.createEditor("#itemAddForm [name=desc]");
+		//获取富文本对象
+		Editor = Suning.createEditor("#itemAddForm [name=description]");
 		var data = {
+				dom :"#itemAddForm",
 				Function : function(node){
 					Suning.changeItemParam(node, "itemAddForm");
 				}
 		};
+		//调用init方法
 		Suning.init(data);
 	});
 	
+	//提交表单
 	function submitForm(){
 		if(!$('#itemAddForm').form('validate')){
 			$.messager.alert('提示','表单还未填写完成!');
@@ -84,13 +88,13 @@
 		
 		//获取商品价格并且转换为分
 		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
-		
-		
-		//需要处理富文本编辑器的内容 同步到 隐藏的textarea
+
+		//需要处理富文本编辑器的内容 同步到 隐藏的textarea html代码
 		Editor.sync();
 		
 		//输入的规格参数数据保存为json
 		var paramJson = [];
+		
 		$("#itemAddForm .params li").each(function(i,e){
 			var trs = $(e).find("tr");
 			var group = trs.eq(0).text();
@@ -107,19 +111,12 @@
 				"params": ps
 			});
 		});
+		
 		paramJson = JSON.stringify(paramJson);
 		
-		$("#itemAddForm [name=itemParams]").val(paramJson);
+		//设置参数规格input的值为一个json字符串
+		$("#itemAddForm input[name=itemParams]").val(paramJson);
 		
-		/*
-		$.post("/rest/item/save",$("#itemAddForm").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','新增商品成功!');
-			}
-		});
-		*/
-		
-		//提交到后台的RESTful
 		$.ajax({
 		   type : "POST",
 		   url : "/item",
@@ -138,6 +135,7 @@
 		});
 	}
 	
+	//reset表单
 	function clearForm(){
 		$('#itemAddForm').form('reset');
 		Editor.html('');

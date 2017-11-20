@@ -28,3 +28,10 @@
 1510645651579	Rename type 'ItemDescriptionMapper'
 1510651047134	Rename type 'AbstractBaseBiz'
 1510661910614	Copy compilation unit
+1510732614215	Rename type 'PropertiesServie'
+1510737041258	Extract local variable 'listPageByWhere'
+1510810357182	Rename type 'ItemParamDataMapper'
+1510810377222	Copy compilation unit
+1510810490122	Copy compilation unit
+1510817321606	Extract local variable 'count'
+1510821175879	Extract local variable 'itemParamData'

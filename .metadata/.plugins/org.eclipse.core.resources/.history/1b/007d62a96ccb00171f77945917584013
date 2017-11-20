@@ -1,0 +1,21 @@
+package com.suning.common.vo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.suning.common.entity.ItemCatData;
+
+public class IndexVO {
+
+	@JsonProperty("data")
+	private List<ItemCatData> itemCats = new ArrayList<ItemCatData>();
+
+	public List<ItemCatData> getItemCats() {
+		return itemCats;
+	}
+
+	public void setItemCats(List<ItemCatData> itemCats) {
+		this.itemCats = itemCats;
+	}
+
+}

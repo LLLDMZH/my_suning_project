@@ -1,0 +1,32 @@
+package com.suning.facade.manager.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.Content;
+import com.suning.facade.manager.service.ContentFacade;
+import com.suning.manager.service.biz.ContentBiz;
+@Service("contentFacade")
+public class ContentFacadeImpl implements ContentFacade{
+	@Autowired
+	private ContentBiz contentBiz;
+
+	
+	/**
+	 * 新增内容	
+	 */
+	@Override
+	public void saveContent(Content content) {
+		content.setId(null);
+		this.contentBiz.save(content);
+	}
+
+	/**
+	 * 分页按条件查询
+	 */
+	@Override
+	public ItemListVO listPageContentListByWhere(Long categoryId, Integer pages,
+			Integer rows) {
+		return this.contentBiz.listPageContentListByWhere(categoryId, pages, rows);
+	}
+}

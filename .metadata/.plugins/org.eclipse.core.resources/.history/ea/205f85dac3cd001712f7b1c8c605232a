@@ -1,0 +1,6 @@
+REPOSITORY_PATH=E:\\fileupload
+IMAGE_BASE_URL=http://image.suning.com
+
+SUNING_MANAGER_URL=http://manager.suning.com
+INDEX_AD1_URI=/content?categoryId=5&page=1&rows=20
+INDEX_AD2_URI=/content?categoryId=4&page=1&rows=6

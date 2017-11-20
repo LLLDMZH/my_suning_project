@@ -1,0 +1,5 @@
+package com.suning.common.pojo.vo;
+
+public class IndexVO {
+
+}

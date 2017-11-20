@@ -17,7 +17,7 @@ public class BaseEntity implements Serializable{
      *
      * @mbg.generated Mon Nov 13 20:48:54 CST 2017
      */
-    private Date createdTime;
+    protected Date createdTime;
 
     /**
      *
@@ -26,7 +26,7 @@ public class BaseEntity implements Serializable{
      *
      * @mbg.generated Mon Nov 13 20:48:54 CST 2017
      */
-    private Date updatedTime;
+    protected Date updatedTime;
     
     
     

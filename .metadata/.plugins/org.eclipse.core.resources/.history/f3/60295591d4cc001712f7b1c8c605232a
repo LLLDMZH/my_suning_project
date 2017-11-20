@@ -1,0 +1,40 @@
+package com.suning.facade.manager.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.ContentCategory;
+import com.suning.facade.manager.service.ContentCategoryFacade;
+import com.suning.manager.service.biz.ContentCategoryBiz;
+@Service("contentCategoryFacade")
+public class ContentCategoryFacadeImpl implements ContentCategoryFacade{
+	@Autowired
+	private ContentCategoryBiz contentCategoryBiz;
+
+	@Override
+	public List<ContentCategory> listByParentId(Long pid) {
+		
+		ContentCategory record = new ContentCategory();
+		record.setParentId(pid);
+		return this.contentCategoryBiz.listByWhere(record );
+	}
+
+	@Override
+	public Boolean saveContentCategory(ContentCategory contentCategory) {
+		contentCategory.setId(null);
+		contentCategory.setIsParent(false);
+		contentCategory.setSortOrder(1);
+		contentCategory.setStatus(1);
+		int count1 = this.contentCategoryBiz.save(contentCategory);
+		//你需要获取他的父节点做修改
+		//根据parentId去查询
+		long parentId = contentCategory.getParentId();
+		ContentCategory parentContentCategory = this.contentCategoryBiz.getById(parentId);
+		if (!parentContentCategory.getIsParent()) {
+			parentContentCategory.setIsParent(true);
+			this.contentCategoryBiz.update(parentContentCategory);
+		}
+	}
+}

@@ -6,18 +6,21 @@
 <div id="contentCategoryMenu" class="easyui-menu" style="width:120px;" data-options="onClick:menuHandler">
     <div data-options="iconCls:'icon-add',name:'add'">添加</div>
     <div data-options="iconCls:'icon-remove',name:'rename'">重命名</div>
-    <div class="menu-sep"></div>
     <div data-options="iconCls:'icon-remove',name:'delete'">删除</div>
 </div>
 <script type="text/javascript">
 $(function(){
+	// tree 返回的树形结构的DOM对象 与查询返回的对象一一对应
 	$("#contentCategory").tree({
-		url : '/rest/content/category',
+		url : '/content/category',
 		animate: true,
 		method : "GET",
+		//显示右键菜单
 		onContextMenu: function(e,node){
             e.preventDefault();
+            //选中
             $(this).tree('select',node.target);
+            //menu显示菜单
             $('#contentCategoryMenu').menu('show',{
                 left: e.pageX,
                 top: e.pageY
@@ -27,16 +30,18 @@ $(function(){
         	var _tree = $(this);
         	if(node.id == 0){
         		// 新增节点
-        		$.post("/rest/content/category",{parentId:node.parentId,name:node.text},function(data){
+        		$.post("/content/category",{parentId:node.parentId,name:node.text},function(data){
+        			//更新树
         			_tree.tree("update",{
         				target : node.target,
         				id : data.id
         			});
         		});
         	}else{
+        		//修改
         		$.ajax({
         			   type: "PUT",
-        			   url: "/rest/content/category",
+        			   url: "/content/category",
         			   data: {id:node.id,name:node.text},
         			   success: function(msg){
         				   //$.messager.alert('提示','新增商品成功!');
@@ -49,10 +54,12 @@ $(function(){
         }
 	});
 });
+
 function menuHandler(item){
 	var tree = $("#contentCategory");
 	var node = tree.tree("getSelected");
 	if(item.name === "add"){
+		//添加节点 设置id属性为0
 		tree.tree('append', {
             parent: (node?node.target:null),
             data: [{
@@ -61,7 +68,10 @@ function menuHandler(item){
                 parentId : node.id
             }]
         }); 
+		
+		//找到id属性为0 的节点
 		var _node = tree.tree('find',0);
+		//选中并进入开始编辑状态
 		tree.tree("select",_node.target).tree('beginEdit',_node.target);
 	}else if(item.name === "rename"){
 		tree.tree('beginEdit',node.target);
@@ -70,8 +80,13 @@ function menuHandler(item){
 			if(r){
 				$.ajax({
      			   type: "POST",
-     			   url: "/rest/content/category",
-     			   data : {parentId:node.parentId,id:node.id,"_method":"DELETE"},
+     			   url: "/content/category",
+     			   data : {
+     				   	parentId : node.parentId,
+     				   	id : node.id,
+     				   	isParent : node.isParent,
+     				   	"_method" : "DELETE"
+     				   	},
      			   success: function(msg){
      				   //$.messager.alert('提示','新增商品成功!');
      				  tree.tree("remove",node.target);

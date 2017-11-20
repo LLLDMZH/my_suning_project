@@ -1,0 +1,78 @@
+package com.suning.facade.manager.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.abel533.entity.Example;
+import com.github.pagehelper.PageInfo;
+import com.suning.common.entity.ItemListVO;
+import com.suning.facade.manager.entity.Item;
+import com.suning.facade.manager.entity.ItemDescription;
+import com.suning.facade.manager.entity.ItemParamData;
+import com.suning.facade.manager.service.ItemFacade;
+import com.suning.manager.service.biz.ItemBiz;
+import com.suning.manager.service.biz.ItemDescriptionBiz;
+import com.suning.manager.service.biz.ItemParamDataBiz;
+
+@Service("itemFacade")
+public class ItemFacadeImpl implements ItemFacade{
+
+	
+	@Autowired
+	private ItemBiz itemBiz;//service1
+	
+	@Autowired
+	private ItemDescriptionBiz itemDescriptionBiz;//service2
+	
+	@Autowired
+	private ItemParamDataBiz itemParamDataBiz;
+	
+	@Override
+	public int saveItem(Item item) {
+		//设置状态
+		item.setStatus(1);
+		//安全问题
+		item.setId(null);
+		return itemBiz.save(item);
+	}
+
+	@Override
+	public Boolean saveItem(Item item, String description, String itemParams) {
+		int count1 = this.saveItem(item);
+		
+		ItemDescription itemDescription = new ItemDescription();
+		itemDescription.setItemId(item.getId());
+		itemDescription.setItemDescription(description);
+		int count2 = itemDescriptionBiz.save(itemDescription);
+		
+		ItemParamData itemParamData = new ItemParamData();
+		itemParamData.setItemId(item.getId());
+		itemParamData.setParamData(itemParams);
+		int count3 = itemParamDataBiz.save(itemParamData);
+		
+		boolean success = (count1 == 1 && count2 == 1 && count3 == 1);
+		return success;
+	}
+
+	@Override
+	public ItemListVO listPageItemList(Integer page, Integer rows) {
+		Example example = new Example(Item.class);
+		example.setOrderByClause("createdTime DESC");
+		PageInfo<Item> pageInfo = this.itemBiz.listPageByWhere(example , page, rows);
+		return new ItemListVO(pageInfo.getSize(), pageInfo.getList());
+	}
+
+	@Override
+	public Boolean updateItem(Item item, String description) {
+		System.out.println("before" + item);
+		item.setStatus(null);
+		Integer count1 = itemBiz.updateSelective(item);
+		System.out.println("after" + item);
+		ItemDescription itemDescription = new ItemDescription();
+		itemDescription.setItemId(item.getId());
+		itemDescription.setItemDescription(description);
+		Integer count2 = this.itemDescriptionBiz.updateSelective(itemDescription);
+		return (count1.intValue() == 1) && (count2.intValue() == 1);
+	}
+	
+}

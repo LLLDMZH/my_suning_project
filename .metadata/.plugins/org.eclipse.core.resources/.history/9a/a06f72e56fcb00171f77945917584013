@@ -1,0 +1,22 @@
+package com.suning.manager.controller.api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.suning.facade.manager.service.ItemCatFacade;
+
+@Controller
+@RequestMapping("/api/item/cat")
+public class ApiItemCatController {
+	
+	@Autowired
+	private ItemCatFacade itemCatFacade;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<String> queryItemCatList() {
+		
+	}
+}

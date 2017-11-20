@@ -1,0 +1,16 @@
+package com.suning.manager.service.biz;
+
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.ItemParamData;
+@Service("itemParamDataBiz")
+public class ItemParamDataBiz extends BaseBiz<ItemParamData>{
+
+	public int updateByWhere(Long id, String itemParams) {
+		ItemParamData itemParamData = new ItemParamData();
+		itemParamData.setParamData(itemParams);
+		itemParamData.setItemId(id);
+		return 0;
+	}
+
+}

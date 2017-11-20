@@ -1,0 +1,8 @@
+com\suning\facade\manager\entity\Item.class
+com\suning\facade\manager\service\ItemCatFacade.class
+com\suning\facade\manager\entity\ItemParamTemplate.class
+com\suning\facade\manager\service\ItemDescriptionFacade.class
+com\suning\facade\manager\entity\ItemCat.class
+com\suning\facade\manager\entity\ItemDescription.class
+com\suning\facade\manager\service\ItemFacade.class
+com\suning\facade\manager\entity\ItemParamData.class

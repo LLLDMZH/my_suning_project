@@ -1,0 +1,12 @@
+package com.suning.facade.manager.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.service.ContentCategoryFacade;
+import com.suning.manager.service.biz.ContentCategoryBiz;
+@Service("contentCategoryFacade")
+public class ContentCategoryFacadeImpl implements ContentCategoryFacade{
+	@Autowired
+	private ContentCategoryBiz contentCategoryBiz;
+}

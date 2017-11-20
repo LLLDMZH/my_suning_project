@@ -1,0 +1,21 @@
+package com.suning.manager.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.suning.facade.manager.entity.Content;
+import com.suning.facade.manager.service.ContentFacade;
+
+@Controller
+@RequestMapping("/content")
+public class ContentController {
+	@Autowired
+	private ContentFacade contentFacade;
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> saveContent(Content content) {
+		
+	}
+}

@@ -1,0 +1,8 @@
+package com.suning.common.constant;
+
+public class FileUpLoadConsts {
+	@Value("${REPOSITORY_PATH}")
+	public static final String REPOSITORY_PATH;
+	@Value("${IMAGE_BASE_URL}")
+	public static final String IMAGE_BASE_URL;
+}

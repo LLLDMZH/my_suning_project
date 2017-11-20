@@ -3,13 +3,18 @@ package com.suning.facade.manager.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.abel533.entity.Example;
+import com.github.pagehelper.PageInfo;
+import com.suning.common.entity.PageBean;
 import com.suning.facade.manager.entity.Item;
 import com.suning.facade.manager.entity.ItemDescription;
+import com.suning.facade.manager.entity.ItemParamData;
 import com.suning.facade.manager.service.ItemFacade;
 import com.suning.manager.service.biz.ItemBiz;
 import com.suning.manager.service.biz.ItemDescriptionBiz;
+import com.suning.manager.service.biz.ItemParamDataBiz;
 
-@Service("itemFacadeImpl")
+@Service("itemFacade")
 public class ItemFacadeImpl implements ItemFacade{
 
 	
@@ -18,6 +23,9 @@ public class ItemFacadeImpl implements ItemFacade{
 	
 	@Autowired
 	private ItemDescriptionBiz itemDescriptionBiz;//service2
+	
+	@Autowired
+	private ItemParamDataBiz itemParamDataBiz;
 	
 	@Override
 	public int saveItem(Item item) {
@@ -29,15 +37,44 @@ public class ItemFacadeImpl implements ItemFacade{
 	}
 
 	@Override
-	public Boolean saveItem(Item item, String description) {
+	public Boolean saveItem(Item item, String description, String itemParams) {
 		int count1 = this.saveItem(item);
 		
 		ItemDescription itemDescription = new ItemDescription();
 		itemDescription.setItemId(item.getId());
-		itemDescription.setItemDesc(description);
+		itemDescription.setItemDescription(description);
 		int count2 = itemDescriptionBiz.save(itemDescription);
-		boolean success = ((count1 == 1) && (count2 == 1));
+		
+		ItemParamData itemParamData = new ItemParamData();
+		itemParamData.setItemId(item.getId());
+		itemParamData.setParamData(itemParams);
+		int count3 = itemParamDataBiz.save(itemParamData);
+		
+		boolean success = (count1 == 1 && count2 == 1 && count3 == 1);
 		return success;
+	}
+
+	@Override
+	public PageBean listPageItemList(Integer page, Integer rows) {
+		Example example = new Example(Item.class);
+		example.setOrderByClause("createdTime DESC");
+		PageInfo<Item> pageInfo = this.itemBiz.listPageByWhere(example , page, rows);
+		return new PageBean(pageInfo.getSize(), pageInfo.getList());
+	}
+
+	@Override
+	public Boolean updateItem(Item item, String description, String itemParams) {
+		item.setStatus(null);
+		int count1 = itemBiz.updateSelective(item);
+		
+		ItemDescription itemDescription = new ItemDescription();
+		itemDescription.setItemId(item.getId());
+		itemDescription.setItemDescription(description);
+		int count2 = this.itemDescriptionBiz.updateSelective(itemDescription);
+		
+		int count3 = this.itemParamDataBiz.updateByWhere(item.getId(), itemParams);
+
+		return count1 == 1 && count2 == 1 && count3 == 1;
 	}
 	
 }

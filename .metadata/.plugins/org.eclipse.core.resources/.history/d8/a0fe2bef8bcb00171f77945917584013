@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	alert($);
+	$.ajax({
+		url : "/json.jsp",
+		method : "get",
+		dataType : "text",
+		success : function(data) {
+			console.log(data);
+		}
+	});
+</script>
+</head>
+<body>
+
+</body>
+</html>

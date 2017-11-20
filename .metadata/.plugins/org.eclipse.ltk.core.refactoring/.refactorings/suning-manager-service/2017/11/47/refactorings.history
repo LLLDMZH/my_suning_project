@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract local variable &apos;id&apos; from expression &apos;contentCategory.getId()&apos;&#x0D;&#x0A;- Original project: &apos;suning-manager-service&apos;&#x0D;&#x0A;- Variable name: &apos;id&apos;&#x0D;&#x0A;- Destination method: &apos;com.suning.facade.manager.service.impl.ContentCategoryFacadeImpl.deleteByRecursion()&apos;&#x0D;&#x0A;- Variable expression: &apos;contentCategory.getId()&apos;&#x0D;&#x0A;- Replace occurrences of expression with variable" description="Extract local variable &apos;id&apos;" final="false" id="org.eclipse.jdt.ui.extract.temp" input="/src\/main\/java&lt;com.suning.facade.manager.service.impl{ContentCategoryFacadeImpl.java" name="id" replace="true" selection="2039 23" stamp="1511063145410" version="1.0"/>
+</session>

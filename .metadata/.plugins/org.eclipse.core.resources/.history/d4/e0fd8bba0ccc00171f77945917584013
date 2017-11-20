@@ -1,0 +1,12 @@
+package com.suning.manager.service.biz;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.manager.service.dao.ContentDao;
+
+@Service("contentBiz")
+public class ContentBiz {
+	@Autowired
+	private ContentDao contentDao;
+}

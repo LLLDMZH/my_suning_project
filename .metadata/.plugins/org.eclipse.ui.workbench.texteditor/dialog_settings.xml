@@ -2,32 +2,41 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="305" key="DIALOG_WIDTH"/>
-		<item value="299" key="DIALOG_Y_ORIGIN"/>
+		<item value="388" key="DIALOG_Y_ORIGIN"/>
+		<item value="384" key="DIALOG_X_ORIGIN"/>
 		<item value="442" key="DIALOG_HEIGHT"/>
-		<item value="1219" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
+		<item value="false" key="wrap"/>
 		<item value="true" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
-		<item value="true" key="wholeword"/>
-		<item value=".facade.manager" key="selection"/>
+		<item value="false" key="wholeword"/>
+		<item value="outputMessage" key="selection"/>
 		<list key="findhistory">
-			<item value=".manager.facade"/>
-			<item value="Su"/>
-			<item value="德鲁伊"/>
-			<item value="Criterion"/>
-			<item value="oredCriteria"/>
-			<item value="fun"/>
-			<item value="data"/>
-			<item value="itemAddEditor"/>
+			<item value="outputMessage"/>
+			<item value="JsonGenerator"/>
+			<item value="supportedMediaTypes"/>
+			<item value="DEFAULT_CHARSET"/>
+			<item value="getDataService"/>
+			<item value="json"/>
+			<item value="ItemCatData"/>
+			<item value="ItemCatResult"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ItemCatDTO"/>
+			<item value="IndexVO"/>
+			<item value="suning-web"/>
+			<item value="Suning"/>
+			<item value="/"/>
+			<item value="mapper"/>
 			<item value=".facade.manager"/>
 			<item value="Editor"/>
-			<item value="Sunning"/>
 		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="365" key="DIALOG_Y_ORIGIN"/>
+		<item value="652" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

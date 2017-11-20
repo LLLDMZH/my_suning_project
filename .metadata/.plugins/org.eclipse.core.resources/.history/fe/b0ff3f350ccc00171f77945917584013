@@ -1,0 +1,7 @@
+package com.suning.facade.manager.service.impl;
+
+import org.springframework.stereotype.Service;
+@Service("contentFacade")
+public class ContentFacadeImpl implements ContentFacade{
+
+}

@@ -1,0 +1,10 @@
+package com.suning.common.constant;
+
+import org.springframework.beans.factory.annotation.Value;
+
+public class FileUpLoadConsts {
+	@Value("${REPOSITORY_PATH}")
+	public static final String REPOSITORY_PATH;
+	@Value("${IMAGE_BASE_URL}")
+	public static final String IMAGE_BASE_URL;
+}

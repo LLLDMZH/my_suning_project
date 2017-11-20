@@ -1,0 +1,56 @@
+package com.suning.common.entity;
+
+import java.util.List;
+
+public class ItemListVO {
+
+
+    private Integer total;
+
+    private List<?> rows;
+
+    public ItemListVO() {
+    }
+
+    public ItemListVO(Integer total, List<?> rows) {
+        this.total = total;
+        this.rows = rows;
+    }
+
+    public ItemListVO(Long total, List<?> rows) {
+        this.total = total.intValue();
+        this.rows = rows;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    public List<?> getRows() {
+        return rows;
+    }
+
+    public void setRows(List<?> rows) {
+        this.rows = rows;
+    }
+
+    public static ItemListVO formatToList(String jsonData, Class<?> clazz) {
+        try {
+            JsonNode jsonNode = MAPPER.readTree(jsonData);
+            JsonNode data = jsonNode.get("rows");
+            List<?> list = null;
+            if (data.isArray() && data.size() > 0) {
+                list = MAPPER.readValue(data.traverse(),
+                        MAPPER.getTypeFactory().constructCollectionType(List.class, clazz));
+            }
+            return new ItemListVO(jsonNode.get("total").intValue(), list);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+}

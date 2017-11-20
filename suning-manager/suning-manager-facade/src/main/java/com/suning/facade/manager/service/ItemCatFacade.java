@@ -2,6 +2,7 @@ package com.suning.facade.manager.service;
 
 import java.util.List;
 
+import com.suning.common.pojo.vo.IndexVO;
 import com.suning.facade.manager.entity.ItemCat;
 
 /**
@@ -12,4 +13,8 @@ import com.suning.facade.manager.entity.ItemCat;
  */
 public interface ItemCatFacade {
 	List<ItemCat> listItemsByParentId(Long parentId);
+
+	ItemCat getItemById(Long cid);
+
+	IndexVO listIndexItemCat();
 }

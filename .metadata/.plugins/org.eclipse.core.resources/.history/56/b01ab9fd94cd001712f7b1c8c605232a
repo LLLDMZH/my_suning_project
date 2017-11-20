@@ -1,0 +1,5 @@
+package com.suning.web.service;
+
+public class ApiService {
+
+}

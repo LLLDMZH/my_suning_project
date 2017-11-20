@@ -1,0 +1,20 @@
+package com.suning.manager.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.suning.facade.manager.entity.ItemDescription;
+import com.suning.facade.manager.service.ItemDescriptionFacade;
+
+@RequestMapping("item/description")
+@Controller
+public class ItemDescController {
+	@Autowired
+	private ItemDescriptionFacade itemDescriptionFacade;
+	
+/*	public ResponseEntity<ItemDescription> queryItemDescription() {
+		
+	}*/
+}

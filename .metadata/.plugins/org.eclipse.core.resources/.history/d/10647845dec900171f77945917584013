@@ -1,0 +1,72 @@
+package com.suning.common.entity;
+
+import java.io.Serializable;
+
+public class PictureUploadResult implements Serializable{
+    
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1205631978108586039L;
+
+	private Integer error;
+    
+    private String url;
+    
+    private String width;
+    
+    private String height;
+    
+    
+    
+
+    @Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("PictureUploadResult [error=");
+		builder.append(error);
+		builder.append(", url=");
+		builder.append(url);
+		builder.append(", width=");
+		builder.append(width);
+		builder.append(", height=");
+		builder.append(height);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public Integer getError() {
+        return error;
+    }
+
+    public void setError(Integer error) {
+        this.error = error;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+    
+    
+
+}

@@ -1,0 +1,7 @@
+package com.suning.manager.service.biz;
+
+import com.suning.facade.manager.entity.ItemParamData;
+
+public class ItemParamTemplateBiz extends BaseBiz<ItemParamData>{
+
+}

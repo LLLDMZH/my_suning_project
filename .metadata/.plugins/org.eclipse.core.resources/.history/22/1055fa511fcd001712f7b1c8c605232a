@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suning.manager.service.dao.ContentDao">
+	<select id="listByCategoryId" resultType="Content">
+		SELECT * FROM `suning_content` WHERE category_id = #{id} ORDER BY updated_time DESC;
+	</select>
+</mapper>

@@ -1,1 +1,11 @@
 1510673352901	Rename type 'PicUploadResult'
+1510732560362	Delete element
+1510735901518	Rename type 'EasyUIResult'
+1510905309703	Rename package 'com.suning.common.pojp'
+1510905319139	Copy package
+1510905321688	Delete element
+1510905338868	Delete element
+1510905407976	Copy compilation unit
+1510905410734	Delete element
+1510905412118	Delete element
+1510905428440	Rename type 'ItemCatData'

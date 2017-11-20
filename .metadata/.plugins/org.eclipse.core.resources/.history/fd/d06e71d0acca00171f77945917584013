@@ -1,0 +1,16 @@
+package com.suning.facade.manager.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.ItemParamData;
+import com.suning.facade.manager.service.ItemParamDataFacade;
+
+@Service("itemParamDataFacade")
+public class ItemParamDataFacadeImpl implements ItemParamDataFacade{
+
+	@Override
+	public ItemParamData getItemParamDataByItemId(Long itemId) {
+		return null;
+	}
+
+}

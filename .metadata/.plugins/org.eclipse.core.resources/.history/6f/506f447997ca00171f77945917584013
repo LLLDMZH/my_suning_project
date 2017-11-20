@@ -1,0 +1,15 @@
+package com.suning.facade.manager.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.ItemParamTemplate;
+import com.suning.facade.manager.service.ItemParamTemplateFacade;
+@Service("temParamTemplateFacade")
+public class ItemParamTemplateFacadeImpl implements ItemParamTemplateFacade{
+
+	@Override
+	public ItemParamTemplate getItemParamTemplateByItemCatId(Long itemCatId) {
+		return null;
+	}
+
+}

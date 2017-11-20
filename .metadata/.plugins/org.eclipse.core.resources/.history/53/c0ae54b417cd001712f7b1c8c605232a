@@ -1,0 +1,13 @@
+package com.suning.facade.manager.service;
+
+import com.suning.facade.manager.entity.Content;
+
+public interface ContentFacade {
+
+	void saveContent(Content content);
+
+	void listPageContentListByWhere(Long categoryId, Integer pages, Integer rows);
+
+	void listPageContentListByWhere(Long categoryId, Integer pages, Integer rows);
+
+}

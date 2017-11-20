@@ -6,4 +6,6 @@ public interface ItemDescriptionFacade {
 	int saveItemDescription(ItemDescription itemDescription);
 	
 	int saveItemDescription(ItemDescription itemDescription, String description, Long itemId);
+
+	ItemDescription getItemDescriptionById(Long id);
 }

@@ -15,7 +15,7 @@ public abstract class BaseBiz<T extends BaseEntity> {
 	
 	@Autowired
 	//通用Mapper 泛型注入
-	private Mapper<T> mapper;
+	protected Mapper<T> mapper;
 	
 	/**
 	 * 根据主键查询
@@ -66,6 +66,12 @@ public abstract class BaseBiz<T extends BaseEntity> {
 		return new PageInfo<T>(list);
 	}
 	
+	public PageInfo<T> listPageByWhere(Example example, Integer page, Integer rows) {
+		//设置分页参数
+		PageHelper.startPage(page, rows);
+		List<T> list = this.mapper.selectByExample(example);
+		return new PageInfo<T>(list);
+	}
 	/**
 	 * 新增数据
 	 * @param record

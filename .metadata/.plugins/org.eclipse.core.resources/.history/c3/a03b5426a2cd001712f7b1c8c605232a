@@ -1,0 +1,32 @@
+package com.suning.web.service;
+
+import java.io.IOException;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class IndexService {
+	@Autowired
+	private ApiService apiService;
+	
+	
+	public String queryIndexAD1() {
+		String url = "http://manager.suning.com/content?categoryId=4&page=1&rows=20";
+		String jsonData;
+		try {
+			jsonData = this.apiService.doGet(url);
+			if (StringUtils.isEmpty(jsonData)) {
+				return null;
+			}
+			return null;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.suning.manager.service.biz;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.Content;
+import com.suning.manager.service.dao.ContentDao;
+
+@Service("contentBiz")
+public class ContentBiz extends BaseBiz<Content>{
+}

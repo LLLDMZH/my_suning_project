@@ -38,9 +38,9 @@ var Suning = {
 		}
 		return "";
 	},
-	// 格式化价格
+	// 格式化价格 分==>元
 	formatPrice : function(val,row){
-		return (val/1000).toFixed(2);
+		return (val/100).toFixed(2);
 	},
 	// 格式化商品的状态
 	formatItemStatus : function formatStatus(val,row){
@@ -52,44 +52,54 @@ var Suning = {
         	return '未知';
         }
     },
-    
+    //页面加载后调用
     init : function(data){
+    	//初始化图片上传组件
     	this.initPicUpload(data);
+    	//初始化商品类目
     	this.initItemCat(data);
     },
     // 初始化图片上传组件
     initPicUpload : function(data){
-    	
-    	$(".picFileUpload").each(function(i,e){
+    	$(".picFileUpload",data.dom).each(function(i,e){
     		var _ele = $(e);
+    		//定义要显示图片的框架
     		_ele.siblings("div.pics").remove();
     		_ele.after('\
     			<div class="pics">\
         			<ul></ul>\
         		</div>');
-    		// 回显图片
-        	if(data && data.pics){
+    		
+    		//有数据的话 直接显示 将取出来的图片地址按照,分割
+        	if(data && data.pics){ 
         		var imgs = data.pics.split(",");
         		for(var i in imgs){
         			if($.trim(imgs[i]).length > 0){
-        				_ele.siblings(".pics").find("ul").append("<li><a href='"+imgs[i]+"' target='_blank'><img src='"+imgs[i]+"' width='80' height='50' /></a></li>");
+        				_ele.siblings(".pics").find("ul").
+        				append("<li><a href='"+imgs[i]+"' target='_blank'><img src='"+imgs[i]+"' width='80' height='50' /></a></li>");
+        				
         			}
         		}
+				
         	}
-        	
+        	//添加绑定事件
         	$(e).unbind('click').click(function(){
         		//parentsUtil不包含本身父辈元素 而是他的直接子元素
         		var form = $(this).parentsUntil("form").parent("form");
+        		//创建上传图片的界面
         		KindEditor.editor(Suning.kingEditorParams).loadPlugin('multiimage',function(){
         			var editor = this;
         			editor.plugin.multiImageDialog({
-						clickFn : function(urlList) {
+						clickFn : function(urlList) {//获取上传列表的数据
 							var imgArray = [];
+							
 							KindEditor.each(urlList, function(i, data) {
-								imgArray.push(data.url);
+								imgArray.push(data.url);//将url地址加入到字符串数组中
+								
 								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank'>" +
 										"<img src='"+data.url+"' width='80' height='50' /></a></li>");
 							});
+							//在表单中添加image这个值 用,分割
 							form.find("[name=image]").val(imgArray.join(","));
 							editor.hideDialog();
 						}
@@ -102,12 +112,19 @@ var Suning = {
     // 初始化选择类目组件
     initItemCat : function(data){
     	$(".selectItemCat").each(function(i,e){
+    		//将dom对象转换成Jquery对象
     		var _ele = $(e);
+    		//如果传入的data存在并且定义了就显示 否则就显示一个空的
     		if(data && data.cid){
-    			_ele.after("<span style='margin-left:10px;'>"+data.cid+"</span>");
+    			// 加载类目名称
+    			$.getJSON("/item/cats/" + data.cid, function(_data){
+					data.cname = _data.itemName;
+					_ele.after("<span style='margin-left:10px;'>"+data.cname+"</span>");
+    			});
     		}else{
     			_ele.after("<span style='margin-left:10px;'></span>");
     		}
+    		//解绑所有click事件 重新绑定一个
     		_ele.unbind('click').click(function(){
     			//创建一个div 
     			$("<div>").css({padding:"5px"}).html("<ul>")
@@ -119,14 +136,18 @@ var Suning = {
     			    iconCls:'icon-save',
     			    title:'选择类目',
     			    onOpen : function(){
-    			    	//加载内部数据
+    			    	//打开窗口时的动作
+    			    	//获取div对象
     			    	var _win = this;
+    			    	//这个div下的ul
     			    	$("ul",_win).tree({
-    			    		url : '/item/cat',
+    			    		url : '/item/cats',
     			    		animate : true,
     			    		method : "GET",
     			    		onClick : function(node){
+    			    			//如果选择的是最底层的类目的话
     			    			if($(this).tree("isLeaf",node.target)){
+    			    				//从a找到td
     			    				_ele.parent().find("[name=cid]").val(node.id);//隐藏input设置商品id
     			    				_ele.next().text(node.text).attr("cid",node.id);//当前Jquery对象的next设置文本和属性
     			    				$(_win).window('close');
@@ -186,34 +207,46 @@ var Suning = {
     },
     
     closeCurrentWindow : function(){
+    	//红X的class
     	$(".panel-tool-close").click();
     },
     
     changeItemParam : function(node,formId){
-    	$.getJSON("/rest/item/param/query/itemcatid/" + node.id,function(data){
-			  if(data.status == 200 && data.data){
-				 $("#"+formId+" .params").show();
-				 var paramData = JSON.parse(data.data.paramData);
-				 var html = "<ul>";
-				 for(var i in paramData){
-					 var pd = paramData[i];
-					 html+="<li><table>";
-					 html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
-					 
-					 for(var j in pd.params){
-						 var ps = pd.params[j];
-						 html+="<tr><td class=\"param\"><span>"+ps+"</span>: </td><td><input autocomplete=\"off\" type=\"text\"/></td></tr>";
+  	  $.ajax({
+		   type: "GET",
+		   url: "/item/param/template/" + node.id,
+		   statusCode : {
+			   200 : function(data) {
+				   //指定form下的 商品规格的 tr显示
+					 $("#"+formId+" .params").show();
+					 //解析为json对象
+					 var paramData = JSON.parse(data.paramData);
+					 var html = "<ul>";
+					 //有多少个具体对象就是多少个li
+					 for(var i in paramData){
+						 var pd = paramData[i];
+						 html+="<li><table>";
+						 html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
+						 
+						 for(var j in pd.params){
+							 var ps = pd.params[j];
+							 html+="<tr><td class=\"param\"><span>"+ps+"</span>: </td><td><input autocomplete=\"off\" type=\"text\"/></td></tr>";
+						 }
+						 
+						 html+="</li></table>";
 					 }
-					 
-					 html+="</li></table>";
-				 }
-				 html+= "</ul>";
-				 $("#"+formId+" .params td").eq(1).html(html);
-			  }else{
-				 $("#"+formId+" .params").hide();
-				 $("#"+formId+" .params td").eq(1).empty();
-			  }
-		  });
+					 html+= "</ul>";
+					 $("#"+formId+" .params td").eq(1).html(html);
+			   },
+			   404 : function() {
+				   $("#"+formId+" .params").hide();
+					 $("#"+formId+" .params td").eq(1).empty();
+			   },
+			   500 : function() {
+				   $.messager.alert('错误','创建失败!','error');
+			   }
+		   }
+		});
     },
     
     getSelectionsIds : function (select){

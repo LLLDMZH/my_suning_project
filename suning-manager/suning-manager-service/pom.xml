@@ -21,8 +21,6 @@
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 
-
-
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>

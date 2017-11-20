@@ -1,0 +1,14 @@
+package com.suning.manager.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.suning.facade.manager.service.ContentFacade;
+
+@Controller
+@RequestMapping("/content")
+public class ContentController {
+	@Autowired
+	private ContentFacade contentFacade;
+}

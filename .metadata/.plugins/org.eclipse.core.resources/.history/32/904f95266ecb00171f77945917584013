@@ -1,0 +1,14 @@
+package com.suning.common.pojo.vo;
+
+public class IndexVO {
+		@JsonProperty("data")
+		private List<ItemCatDTO> itemCats = new ArrayList<ItemCatDTO>();
+
+		public List<ItemCatDTO> getItemCats() {
+			return itemCats;
+		}
+
+		public void setItemCats(List<ItemCatDTO> itemCats) {
+			this.itemCats = itemCats;
+		}
+}

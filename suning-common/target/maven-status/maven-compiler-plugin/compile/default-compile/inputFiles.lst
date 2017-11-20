@@ -1,2 +1,6 @@
 E:\java项目\suning\suning-common\src\main\java\com\suning\common\entity\BaseEntity.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\spring\extend\converter\json\CallbackMappingJackson2HttpMessageConverter.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\entity\PageBean.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\pojo\vo\IndexVO.java
 E:\java项目\suning\suning-common\src\main\java\com\suning\common\entity\PictureUploadResult.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\pojo\dto\ItemCatDTO.java
