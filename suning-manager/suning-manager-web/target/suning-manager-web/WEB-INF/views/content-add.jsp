@@ -53,39 +53,37 @@
 <script type="text/javascript">
 	var contentAddEditor ;
 	$(function(){
-		contentAddEditor = TT.createEditor("#contentAddForm [name=content]");
-		TT.initOnePicUpload();
+		//创建一个文本编辑器
+		contentAddEditor = Suning.createEditor("#contentAddForm [name=content]");
+		//初始化单次上传组件
+		Suning.initOnePicUpload();
 		$("#contentAddForm [name=categoryId]").val($("#contentCategoryTree").tree("getSelected").id);
 	});
 	
 	var contentAddPage  = {
 			submitForm : function (){
+				//调用表单校验
 				if(!$('#contentAddForm').form('validate')){
 					$.messager.alert('提示','表单还未填写完成!');
 					return ;
 				}
+				//同步html到文本框
 				contentAddEditor.sync();
-				
-				/* $.post("/rest/content/save",$("#contentAddForm").serialize(), function(data){
-					if(data.status == 200){
-						$.messager.alert('提示','新增内容成功!');
-    					$("#contentList").datagrid("reload");
-    					TT.closeCurrentWindow();
-					}
-				}); */
 				
 				//提交到后台的RESTful
 				$.ajax({
 				   type: "POST",
-				   url: "/rest/content",
+				   url: "/content",
 				   data: $("#contentAddForm").serialize(),
-				   success: function(msg){
-					   $.messager.alert('提示','新增内容成功!');
-   						$("#contentList").datagrid("reload");
-   						TT.closeCurrentWindow();
-				   },
-				   error: function(){
-					   $.messager.alert('提示','新增内容失败!');
+				   statusCode : {
+					   201 : function(){
+						   $.messager.alert('提示','新增内容成功!');
+	   						$("#contentList").datagrid("reload");
+						   Suning.closeCurrentWindow();
+					   },
+					   500 : function() {
+						   $.messager.alert('提示','新增内容失败!');
+					   }
 				   }
 				});
 			},

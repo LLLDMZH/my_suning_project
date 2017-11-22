@@ -1,0 +1,14 @@
+package com.suning.web.service;
+
+import org.springframework.stereotype.Service;
+
+import com.suning.facade.manager.entity.Item;
+
+@Service
+public class ItemService {
+
+	public Item getItemById(Long itemId) {
+		return null;
+	}
+
+}

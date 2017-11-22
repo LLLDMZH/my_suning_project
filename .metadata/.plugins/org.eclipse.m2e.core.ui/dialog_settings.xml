@@ -57,6 +57,19 @@
 			<item value="0.0.1-SNAPSHOT"/>
 		</list>
 	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="E:\BaiduYunDownload\0、传智29期淘淘商城大型分布式电商项目Redis+RabbitMQ+Dubbo+SpringBoot+Nginx+SSM（2016年8月）\课前资料\day05（淘淘商城04 - Redis入门）\Redis相关资料"/>
+			<item value="E:\BaiduYunDownload\0、传智29期淘淘商城大型分布式电商项目Redis+RabbitMQ+Dubbo+SpringBoot+Nginx+SSM（2016年8月）\课前资料\day04（淘淘商城03 - 前台系统搭建、实现、内容管理系统实现）\开发资料"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+		</list>
+	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
 			<item value="com.suning.web"/>

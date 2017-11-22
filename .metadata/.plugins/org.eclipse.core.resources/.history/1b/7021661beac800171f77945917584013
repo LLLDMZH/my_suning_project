@@ -1,7 +1,0 @@
-package com.suning.manager.service.biz;
-
-public abstract AbstractBaseBiz<T,I> {
-	public abstract I getMapper();
-	public T getById();
-	
-}

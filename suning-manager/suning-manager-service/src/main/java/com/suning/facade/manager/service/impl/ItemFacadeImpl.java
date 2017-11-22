@@ -1,11 +1,16 @@
 package com.suning.facade.manager.service.impl;
 
+import java.io.IOException;
+
+import org.apache.http.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageInfo;
 import com.suning.common.entity.PageBean;
+import com.suning.common.service.ApiService;
 import com.suning.facade.manager.entity.Item;
 import com.suning.facade.manager.entity.ItemDescription;
 import com.suning.facade.manager.entity.ItemParamData;
@@ -26,6 +31,13 @@ public class ItemFacadeImpl implements ItemFacade{
 	
 	@Autowired
 	private ItemParamDataBiz itemParamDataBiz;
+	
+	@Autowired
+	private ApiService apiService;
+	
+	
+	@Value("${SUNING_WEB_URL}")
+	private String SUNING_WEB_URL;
 	
 	@Override
 	public int saveItem(Item item) {
@@ -65,16 +77,28 @@ public class ItemFacadeImpl implements ItemFacade{
 	@Override
 	public Boolean updateItem(Item item, String description, String itemParams) {
 		item.setStatus(null);
-		int count1 = itemBiz.updateSelective(item);
+		itemBiz.updateSelective(item);
 		
 		ItemDescription itemDescription = new ItemDescription();
 		itemDescription.setItemId(item.getId());
 		itemDescription.setItemDescription(description);
-		int count2 = this.itemDescriptionBiz.updateSelective(itemDescription);
 		
-		int count3 = this.itemParamDataBiz.updateByWhere(item.getId(), itemParams);
+		this.itemDescriptionBiz.updateSelective(itemDescription);
+		
+		this.itemParamDataBiz.updateByWhere(item.getId(), itemParams);
 
-		return count1 == 1 && count2 == 1 && count3 == 1;
+		//通知其他系统该商品已经更新。
+		String url = SUNING_WEB_URL + "item/cache/" + item.getId() + ".html";
+		try {
+			this.apiService.doPost(url);
+		} catch (ParseException | IOException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
-	
+
+	@Override
+	public Item getItem(Long itemId) {
+		return this.itemBiz.getById(itemId);
+	}
 }

@@ -1,0 +1,5 @@
+package com.suning.manager.controller.api;
+
+public class ApiItemParamDataController {
+
+}

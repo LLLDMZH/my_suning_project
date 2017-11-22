@@ -37,34 +37,27 @@
 </div>
 <script style="text/javascript">
 	$(function(){
-		TAOTAO.initItemCat({
-			fun:function(node){
+		//选择类目结束后的一个回调
+		Suning.initItemCat({
+			Function : function(node){
+			//将添加分组的按钮隐藏 并且将下面的参数给删除
 			$(".addGroupTr").hide().find(".param").remove();
-				//  判断选择的目录是否已经添加过规格
-			  /* $.getJSON("/rest/item/param/" + node.id,function(data){
-				  if(data){
-					  $.messager.alert("提示", "该类目已经添加，请选择其他类目。", undefined, function(){
-						 $("#itemParamAddTable .selectItemCat").click();
-					  });
-					  return ;
-				  }
-				  $(".addGroupTr").show();
-			  }); */
-				
 			  $.ajax({
 				   type: "GET",
-				   url: "/rest/item/param/" + node.id,
-				   success: function(data){
-					   if(data){
-						  $.messager.alert("提示", "该类目已经添加，请选择其他类目。", undefined, function(){
-							 $("#itemParamAddTable .selectItemCat").click();
-						  });
-						  return ;
-					  }
-					  $(".addGroupTr").show();
-				   },
-				   error: function(){
-					   alert("error");
+				   url: "/item/param/template/" + node.id,
+				   statusCode : {
+					   200 : function() {
+							  $.messager.alert("提示", "该类目已经添加，请选择其他类目。", undefined, function(){
+								  	//重新打开菜单
+								  	$("#itemParamAddTable .selectItemCat").click();
+								  });
+					   },
+					   404 : function() {
+						   $(".addGroupTr").show();
+					   },
+					   500 : function() {
+							$.messager.alert('错误','创建失败!','error');
+					   }
 				   }
 				});
 			}
@@ -85,15 +78,19 @@
 			  });
 		 });
 		
+		//关闭页面
 		$("#itemParamAddTable .close").click(function(){
 			$(".panel-tool-close").click();
 		});
 		
+		
+		//提交
 		$("#itemParamAddTable .submit").click(function(){
 			var params = [];
-			var groups = $("#itemParamAddTable [name=group]");
+			var groups = $("#itemParamAddTable [name=group]");	//获取所有名字叫做group的input
+			//一共两组数据
 			groups.each(function(i,e){
-				var p = $(e).parentsUntil("ul").parent().find("[name=param]");
+				var p = $(e).parentsUntil("ul").parent().find("[name=param]");//根据当前的group找到最近的ul找到下面所有的paraminput
 				var _ps = [];
 				p.each(function(_i,_e){
 					var _val = $(_e).siblings("input").val();
@@ -109,7 +106,7 @@
 					});					
 				}
 			});
-			var url = "/rest/item/param/"+$("#itemParamAddTable [name=cid]").val();
+			var url = "/item/param/template/"+$("#itemParamAddTable [name=cid]").val();
 			$.post(url,{"paramData":JSON.stringify(params)},function(data){
 				$.messager.alert('提示','新增商品规格成功!',undefined,function(){
 					$(".panel-tool-close").click();

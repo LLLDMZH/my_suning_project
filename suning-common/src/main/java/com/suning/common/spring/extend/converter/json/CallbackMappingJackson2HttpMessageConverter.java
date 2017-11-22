@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,15 +25,17 @@ public class CallbackMappingJackson2HttpMessageConverter extends MappingJackson2
 	protected void writeInternal(Object object, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
 		// 从threadLocal中获取当前的Request对象
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		JsonEncoding encoding = getJsonEncoding(outputMessage.getHeaders().getContentType());
+		JsonGenerator generator = this.objectMapper.getFactory().createGenerator(outputMessage.getBody(), encoding);
 		String callbackParam = request.getParameter(callbackName);
 		if(StringUtils.isEmpty(callbackParam)){
 			// 没有找到callback参数，直接返回json数据
-			super.writeInternal(object, outputMessage);
+			String result =JSON.toJSONString(object);
+			generator.writeRaw(result);
+			generator.flush();
 		}else{
-			JsonEncoding encoding = getJsonEncoding(outputMessage.getHeaders().getContentType());
-			JsonGenerator generator = this.objectMapper.getFactory().createGenerator(outputMessage.getBody(), encoding);
 			try {
-				String result =callbackParam+"("+super.getObjectMapper().writeValueAsString(object)+");";
+				String result =callbackParam+"("+JSON.toJSONString(object)+");";
 				generator.writeRaw(result);
 				generator.flush();
 			}

@@ -10,18 +10,12 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- 依赖facade -->
-		<!-- <dependency> <groupId>com.suning.manager</groupId> <artifactId>suning-manager-facade</artifactId> 
-			<version>1.0.0-SNAPSHOT</version> </dependency> -->
-
-
-		<!-- 先暂时依赖一下service 在没用dubbo之前 -->
 		<dependency>
 			<groupId>com.suning.manager</groupId>
 			<artifactId>suning-manager-service</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
-
+		
 		<!-- 依赖controller -->
 		<dependency>
 			<groupId>org.springframework</groupId>

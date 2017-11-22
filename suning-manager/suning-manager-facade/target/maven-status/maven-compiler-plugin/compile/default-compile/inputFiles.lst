@@ -5,10 +5,13 @@ E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemCatFacade.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemParamDataFacade.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\entity\ContentCategory.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\pojo\vo\ItemVo.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\pojo\vo\IndexVO.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\entity\ItemDescription.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\pojo\dto\ItemCatDTO.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ContentFacade.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\entity\ItemParamTemplate.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ContentCategoryFacade.java
-E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemFacade.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\entity\Item.java
+E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemFacade.java
 E:\java项目\suning\suning-manager\suning-manager-facade\src\main\java\com\suning\facade\manager\service\ItemDescriptionFacade.java

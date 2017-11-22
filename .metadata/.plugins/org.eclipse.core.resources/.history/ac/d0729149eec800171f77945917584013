@@ -1,9 +1,0 @@
-/*package com.suning.manager.service.biz;
-
-public abstract class AbstractBaseBiz<T,I> {
-	public abstract Mapper getMapper();
-	public T getById() {
-		return this.getMapper().
-	}
-}
-*/

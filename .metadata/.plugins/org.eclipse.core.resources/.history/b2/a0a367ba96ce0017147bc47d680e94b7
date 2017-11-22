@@ -1,0 +1,15 @@
+package com.suning.facade.manager.pojo.vo;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.suning.facade.manager.entity.Item;
+
+public class ItemVo extends Item{
+	public String[] getImages() {
+		String image = super.getImage();
+		if (null == image) {
+			return null;
+		}
+		return StringUtils.split(image,",");
+	}
+}

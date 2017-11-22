@@ -1,0 +1,8 @@
+package com.suning.manager.controller.api;
+
+public class Snippet {
+	public static void main(String[] args) {
+		itemDesc
+	}
+}
+

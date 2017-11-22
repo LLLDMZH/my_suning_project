@@ -1,0 +1,27 @@
+package com.suning.manager.service.common;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import redis.clients.jedis.ShardedJedis;
+import redis.clients.jedis.ShardedJedisPool;
+
+@Service
+public class RedisService {
+	
+	@Autowired
+	private ShardedJedisPool pool;
+	
+	public String set(String key, String value) {
+		ShardedJedis shardedJedis = null;
+		try {
+			shardedJedis = pool.getResource();
+			return shardedJedis.set(key, value);
+		} finally {
+			if (null != shardedJedis) {
+				shardedJedis.close();
+			}
+		}
+	}
+	
+}

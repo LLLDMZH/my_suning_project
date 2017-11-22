@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="305" key="DIALOG_WIDTH"/>
 		<item value="388" key="DIALOG_Y_ORIGIN"/>
-		<item value="384" key="DIALOG_X_ORIGIN"/>
 		<item value="442" key="DIALOG_HEIGHT"/>
+		<item value="384" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
-		<item value="false" key="wholeword"/>
-		<item value="outputMessage" key="selection"/>
+		<item value="true" key="wholeword"/>
+		<item value="&lt;httpclient.version&gt;" key="selection"/>
 		<list key="findhistory">
-			<item value="outputMessage"/>
-			<item value="JsonGenerator"/>
-			<item value="supportedMediaTypes"/>
-			<item value="DEFAULT_CHARSET"/>
-			<item value="getDataService"/>
+			<item value="&lt;httpclient.version&gt;"/>
+			<item value="httpclient.version"/>
+			<item value="http"/>
+			<item value="KEY"/>
+			<item value="itemparam"/>
+			<item value="item"/>
+			<item value="httpcomponents"/>
 			<item value="json"/>
-			<item value="ItemCatData"/>
-			<item value="ItemCatResult"/>
 		</list>
 		<list key="replacehistory">
 			<item value="ItemCatDTO"/>
@@ -34,6 +34,13 @@
 			<item value=".facade.manager"/>
 			<item value="Editor"/>
 		</list>
+	</section>
+	<section name="org.eclipse.wst.xml.ui.internal.preferences.XMLTemplatePreferencePage$XMLEditTemplateDialog_dialogBounds">
+		<item value="801" key="DIALOG_WIDTH"/>
+		<item value="48" key="DIALOG_Y_ORIGIN"/>
+		<item value="417" key="DIALOG_HEIGHT"/>
+		<item value="-43" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
 		<item value="365" key="DIALOG_Y_ORIGIN"/>

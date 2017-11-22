@@ -71,15 +71,15 @@
         				itemEditEditor.html(_data.itemDescription);
         			});
         			
-        			//加载商品规格
-        			$.getJSON('/item/param/item/query/'+data.id,function(_data){
-        				if(_data && _data.status == 200 && _data.data && _data.data.paramData){
+        			//加载商品规格数据
+        			$.getJSON('/item/param/data/'+data.id,function(_data){
+        				console.log(_data);
         					$("#itemeEditForm .params").show();
-        					$("#itemeEditForm [name=itemParams]").val(_data.data.paramData);
-        					$("#itemeEditForm [name=itemParamId]").val(_data.data.id);
+        					$("#itemeEditForm [name=itemParams]").val(_data.paramData);
+        					$("#itemeEditForm [name=itemParamId]").val(_data.id);
         					
         					//回显商品规格
-        					 var paramData = JSON.parse(_data.data.paramData);
+        					 var paramData = JSON.parse(_data.paramData);
         					 var html = "<ul>";
         					 for(var i in paramData){
         						 var pd = paramData[i];
@@ -95,7 +95,6 @@
         					 }
         					 html+= "</ul>";
         					 $("#itemeEditForm .params td").eq(1).html(html);
-        				}
         			});
         			Suning.init({
         				"pics" : data.image,

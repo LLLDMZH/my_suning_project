@@ -13,8 +13,8 @@
 		</list>
 	</section>
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="90" key="DIALOG_Y_ORIGIN"/>
-		<item value="632" key="DIALOG_X_ORIGIN"/>
+		<item value="164" key="DIALOG_Y_ORIGIN"/>
+		<item value="131" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="NewWizardAction">
 		<item value="org.eclipse.jdt.ui.wizards.NewInterfaceCreationWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
@@ -35,6 +35,12 @@
 			<item value="org.eclipse.datatools"/>
 			<item value="org.eclipse.jdt.ui.java"/>
 			<item value="org.eclipse.wst.jsdt.ui.java"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.m2e.core.wizards.Maven2ImportWizard" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.m2e"/>
 		</list>
 	</section>
 </section>

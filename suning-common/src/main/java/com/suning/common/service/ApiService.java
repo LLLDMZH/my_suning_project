@@ -1,0 +1,126 @@
+package com.suning.common.service;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.codec.binary.StringUtils;
+import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.suning.common.httpclient.HttpResult;
+
+@Service
+public class ApiService implements BeanFactoryAware{
+/**
+ * 单例对象使用多例
+ */
+
+	@Autowired(required = false)
+	private RequestConfig requestConfig;
+	
+	private BeanFactory factory;
+
+	/**
+	 * GET请求地址
+	 * 
+	 * @param url
+	 * @return 200 为响应的内容，其他返回null
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	public String doGet(String url) throws ClientProtocolException, IOException {
+		HttpGet httpGet = new HttpGet(url);
+		httpGet.setConfig(this.requestConfig);
+		CloseableHttpResponse response = null;
+		response = getHttpClient().execute(httpGet);
+
+		if (response.getStatusLine().getStatusCode() == 200) {
+			return EntityUtils.toString(response.getEntity(), "UTF-8");
+		}
+		if (response != null) {
+			response.close();
+		}
+		return null;
+	}
+
+	/**
+	 * 带参数的GET请求
+	 * 
+	 * @param url
+	 * @param params
+	 * @return
+	 * @throws URISyntaxException
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	public String doGet(String url, Map<String, String> params)
+			throws URISyntaxException, ClientProtocolException, IOException {
+		URIBuilder builder = new URIBuilder(url);
+		for (Map.Entry<String, String> entry : params.entrySet()) {
+			builder.setParameter(entry.getKey(), entry.getValue());
+		}
+		return this.doGet(builder.build().toString());
+	}
+
+	public HttpResult doPost(String url, Map<String, String> params)
+			throws ParseException, IOException {
+		HttpPost httpPost = new HttpPost(url);
+		httpPost.setConfig(requestConfig);
+		if (null != params) {
+			List<NameValuePair> parameters = new ArrayList<NameValuePair>(0);
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				parameters.add(new BasicNameValuePair(entry.getKey(), entry
+						.getValue()));
+			}
+			// 构造一个form表单实体 编码后的表单
+			UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(
+					parameters);
+			httpPost.setEntity(formEntity);
+		}
+
+		CloseableHttpResponse response = null;
+		try {
+			response = getHttpClient().execute(httpPost);
+			return new HttpResult(response.getStatusLine().getStatusCode(),
+						response.getEntity() == null ? null : EntityUtils.toString(response.getEntity(), "UTF-8"));
+		} finally {
+			if (null != response) {
+				response.close();
+			}
+		}
+	}
+	
+	
+	public HttpResult doPost(String url)
+			throws ParseException, IOException {
+		return this.doPost(url, null);
+	}
+
+	@Override
+	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		this.factory = beanFactory;
+	}
+	
+	private CloseableHttpClient getHttpClient() {
+		return this.factory.getBean(CloseableHttpClient.class);
+	}
+}

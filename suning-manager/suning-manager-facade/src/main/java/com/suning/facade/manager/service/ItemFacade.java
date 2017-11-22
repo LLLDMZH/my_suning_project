@@ -11,4 +11,6 @@ public interface ItemFacade {
 	PageBean listPageItemList(Integer page, Integer rows);
 
 	Boolean updateItem(Item item, String description, String itemParams);
+
+	Item getItem(Long itemId);
 }

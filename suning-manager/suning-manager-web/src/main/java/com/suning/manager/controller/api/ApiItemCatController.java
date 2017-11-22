@@ -3,16 +3,12 @@ package com.suning.manager.controller.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.alibaba.druid.util.StringUtils;
-import com.alibaba.fastjson.JSON;
-import com.suning.common.pojo.vo.IndexVO;
+import com.suning.facade.manager.pojo.vo.IndexVO;
 import com.suning.facade.manager.service.ItemCatFacade;
 
 @Controller
@@ -23,7 +19,7 @@ public class ApiItemCatController {
 	private ItemCatFacade itemCatFacade;
 	
 	/**
-	 * 对外提供接口查询所有系统内幕
+	 * 对外提供接口查询所有系统类目
 	 * @return
 	 */
 	

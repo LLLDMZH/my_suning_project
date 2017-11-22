@@ -1,0 +1,4 @@
+com\suning\common\entity\PictureUploadResult.class
+com\suning\common\entity\PageBean.class
+com\suning\common\entity\BaseEntity.class
+com\suning\common\spring\extend\converter\json\CallbackMappingJackson2HttpMessageConverter.class

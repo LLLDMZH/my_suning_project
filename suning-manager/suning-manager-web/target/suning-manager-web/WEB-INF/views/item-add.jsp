@@ -79,6 +79,7 @@
 		Suning.init(data);
 	});
 	
+	//提交表单
 	function submitForm(){
 		if(!$('#itemAddForm').form('validate')){
 			$.messager.alert('提示','表单还未填写完成!');
@@ -93,6 +94,7 @@
 		
 		//输入的规格参数数据保存为json
 		var paramJson = [];
+		
 		$("#itemAddForm .params li").each(function(i,e){
 			var trs = $(e).find("tr");
 			var group = trs.eq(0).text();
@@ -109,6 +111,7 @@
 				"params": ps
 			});
 		});
+		
 		paramJson = JSON.stringify(paramJson);
 		
 		//设置参数规格input的值为一个json字符串

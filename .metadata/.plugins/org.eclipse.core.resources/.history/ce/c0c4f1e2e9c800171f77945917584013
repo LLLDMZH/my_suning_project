@@ -1,6 +1,0 @@
-package com.suning.manager.service;
-
-public interface AbstractBaseService<T> {
-	public T getById();
-	
-}

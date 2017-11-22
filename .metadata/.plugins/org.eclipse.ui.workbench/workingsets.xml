@@ -2,11 +2,11 @@
 <workingSetManager>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1510211890824_1" label="suning" name="suning">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/suning-parent" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/suning-manager-web" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/suning-manager" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/suning-manager-web" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/suning-manager-service" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/suning-manager-facade" type="4"/>
 <item elementID="=suning-common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/suning-manager-facade" type="4"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1510196285580_0" label="Window Working Set" name="Aggregate for window 1510196285580"/>
 </workingSetManager>

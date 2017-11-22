@@ -1,0 +1,2 @@
+redis.maxTotal=100
+redis.node1.port=127.0.0.1

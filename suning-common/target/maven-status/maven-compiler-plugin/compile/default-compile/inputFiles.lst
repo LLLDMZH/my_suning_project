@@ -1,6 +1,11 @@
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\service\Function.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\constant\CacheConsts.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\service\RedisService.java
 E:\java项目\suning\suning-common\src\main\java\com\suning\common\entity\BaseEntity.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\service\PropertyService.java
 E:\java项目\suning\suning-common\src\main\java\com\suning\common\spring\extend\converter\json\CallbackMappingJackson2HttpMessageConverter.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\service\ApiService.java
 E:\java项目\suning\suning-common\src\main\java\com\suning\common\entity\PageBean.java
-E:\java项目\suning\suning-common\src\main\java\com\suning\common\pojo\vo\IndexVO.java
 E:\java项目\suning\suning-common\src\main\java\com\suning\common\entity\PictureUploadResult.java
-E:\java项目\suning\suning-common\src\main\java\com\suning\common\pojo\dto\ItemCatDTO.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\httpclient\IdleConnectionEvictor.java
+E:\java项目\suning\suning-common\src\main\java\com\suning\common\httpclient\HttpResult.java

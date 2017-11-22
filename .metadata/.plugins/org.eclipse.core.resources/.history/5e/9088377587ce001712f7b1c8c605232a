@@ -1,0 +1,21 @@
+package com.suning.web.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+@RequestMapping("/item")
+@Controller
+public class ItemController {
+	@Autowired
+	
+	@RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
+	public ModelAndView itemDetail() {
+		ModelAndView mv = new ModelAndView("item");
+		Item item = this.item
+		mv.addObject("item", item);
+		return mv;
+	}
+}

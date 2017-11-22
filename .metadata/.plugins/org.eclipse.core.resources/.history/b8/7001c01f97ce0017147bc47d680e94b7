@@ -1,0 +1,42 @@
+package com.suning.web.service;
+
+import java.io.IOException;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
+import com.suning.facade.manager.entity.Item;
+
+@Service
+public class ItemService {
+
+	@Autowired
+	private ApiService apiService;
+	
+	@Value("${SUNING_MANAGER_URL}")
+	private String SUNING_MANAGER_URL;
+	
+	/**
+	 * 根据商品id查询商品数据
+	 * 通过后台系统提供的接口服务进行查询
+	 * @param itemId
+	 * @return
+	 */
+	public Item getItemById(Long itemId) {
+		String url = SUNING_MANAGER_URL + "/api/item/" + itemId;
+		try {
+			String jsonData = apiService.doGet(url);
+			if (StringUtils.isEmpty(jsonData)) {
+				return null;
+			}
+			return JSON.parseObject(jsonData, Item.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

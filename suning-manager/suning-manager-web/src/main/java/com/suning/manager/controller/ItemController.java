@@ -76,7 +76,14 @@ public class ItemController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 	
-
+	
+	/**
+	 * 修改商品
+	 * @param item
+	 * @param description
+	 * @param itemParams
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.PUT)
 	public ResponseEntity<Void> updateItem(Item item,
 			@RequestParam(value = "description") String description,

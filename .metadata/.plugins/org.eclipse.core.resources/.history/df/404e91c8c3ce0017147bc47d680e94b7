@@ -1,0 +1,96 @@
+package com.suning.web.service;
+
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.suning.facade.manager.entity.Item;
+import com.suning.facade.manager.entity.ItemDescription;
+import com.suning.facade.manager.entity.ItemParamData;
+import com.suning.facade.manager.pojo.vo.ItemVo;
+
+@Service
+public class ItemService {
+
+	@Autowired
+	private ApiService apiService;
+	
+	@Value("${SUNING_MANAGER_URL}")
+	private String SUNING_MANAGER_URL;
+	
+	/**
+	 * 根据商品id查询商品数据
+	 * 通过后台系统提供的接口服务进行查询
+	 * @param itemId
+	 * @return
+	 */
+	public ItemVo getItemById(Long itemId) {
+		String url = SUNING_MANAGER_URL + "/api/item/" + itemId;
+		try {
+			String jsonData = apiService.doGet(url);
+			if (StringUtils.isEmpty(jsonData)) {
+				return null;
+			}
+			return  JSON.parseObject(jsonData, ItemVo.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	/**
+	 * 查询商品描述数据
+	 * @param itemId
+	 * @return
+	 */
+	public ItemDescription getItemDescriptionByItemId(Long itemId) {
+		String url = SUNING_MANAGER_URL + "/api/item/description/" + itemId;
+		try {
+			String jsonData = apiService.doGet(url);
+			if (StringUtils.isEmpty(jsonData)) {
+				return null;
+			}
+			return  JSON.parseObject(jsonData, ItemDescription.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	public String getItemParamDataByItemId(Long itemId) {
+		String url = SUNING_MANAGER_URL + "/api/item/param/data/" + itemId;
+		try {
+			String jsonData = apiService.doGet(url);
+			if (StringUtils.isEmpty(jsonData)) {
+				return null;
+			}
+			ItemParamData itemParamData = JSON.parseObject(jsonData, ItemParamData.class);
+			String paramData = itemParamData.getParamData();
+			JSONArray jsonArray = JSON.parseArray(paramData);
+			StringBuilder sb = new StringBuilder();
+	            sb.append("<table cellpadding=\"0\" cellspacing=\"1\" width=\"100%\" border=\"0\" class=\"Ptable\"><tbody>");
+	            for (int i = 0; i < jsonArray.size(); i++) {
+	            	sb.append("<tr><th class=\"tdTitle\" colspan=\"2\">" + jsonArray.getJSONObject(i).get("group") + "</th></tr>");
+	            	JSONArray array = jsonArray.getJSONObject(i).getJSONArray("params");
+	            	for (int j = 0; j < array.size(); j++) {
+	            		sb.append("<tr><td class=\"tdTitle\">" + array.getJSONObject(i).get("k") + "</td><td>"
+	            				+ array.getJSONObject(i).get("v") + "</td></tr>");
+					}
+	            }
+	            sb.append("</tbody></table>");
+	            return sb.toString();
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

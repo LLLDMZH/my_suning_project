@@ -207,34 +207,46 @@ var Suning = {
     },
     
     closeCurrentWindow : function(){
+    	//红X的class
     	$(".panel-tool-close").click();
     },
     
     changeItemParam : function(node,formId){
-    	$.getJSON("/rest/item/param/query/itemcatid/" + node.id,function(data){
-			  if(data.status == 200 && data.data){
-				 $("#"+formId+" .params").show();
-				 var paramData = JSON.parse(data.data.paramData);
-				 var html = "<ul>";
-				 for(var i in paramData){
-					 var pd = paramData[i];
-					 html+="<li><table>";
-					 html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
-					 
-					 for(var j in pd.params){
-						 var ps = pd.params[j];
-						 html+="<tr><td class=\"param\"><span>"+ps+"</span>: </td><td><input autocomplete=\"off\" type=\"text\"/></td></tr>";
+  	  $.ajax({
+		   type: "GET",
+		   url: "/item/param/template/" + node.id,
+		   statusCode : {
+			   200 : function(data) {
+				   //指定form下的 商品规格的 tr显示
+					 $("#"+formId+" .params").show();
+					 //解析为json对象
+					 var paramData = JSON.parse(data.paramData);
+					 var html = "<ul>";
+					 //有多少个具体对象就是多少个li
+					 for(var i in paramData){
+						 var pd = paramData[i];
+						 html+="<li><table>";
+						 html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
+						 
+						 for(var j in pd.params){
+							 var ps = pd.params[j];
+							 html+="<tr><td class=\"param\"><span>"+ps+"</span>: </td><td><input autocomplete=\"off\" type=\"text\"/></td></tr>";
+						 }
+						 
+						 html+="</li></table>";
 					 }
-					 
-					 html+="</li></table>";
-				 }
-				 html+= "</ul>";
-				 $("#"+formId+" .params td").eq(1).html(html);
-			  }else{
-				 $("#"+formId+" .params").hide();
-				 $("#"+formId+" .params td").eq(1).empty();
-			  }
-		  });
+					 html+= "</ul>";
+					 $("#"+formId+" .params td").eq(1).html(html);
+			   },
+			   404 : function() {
+				   $("#"+formId+" .params").hide();
+					 $("#"+formId+" .params td").eq(1).empty();
+			   },
+			   500 : function() {
+				   $.messager.alert('错误','创建失败!','error');
+			   }
+		   }
+		});
     },
     
     getSelectionsIds : function (select){

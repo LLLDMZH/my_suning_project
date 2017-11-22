@@ -5,12 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.suning.common.pojo.dto.ItemCatDTO;
-import com.suning.common.pojo.vo.IndexVO;
+import com.alibaba.fastjson.JSON;
+import com.suning.common.constant.CacheConsts;
+import com.suning.common.service.RedisService;
 import com.suning.facade.manager.entity.ItemCat;
+import com.suning.facade.manager.pojo.dto.ItemCatDTO;
+import com.suning.facade.manager.pojo.vo.IndexVO;
 import com.suning.facade.manager.service.ItemCatFacade;
 import com.suning.manager.service.biz.ItemCatBiz;
 
@@ -26,6 +30,9 @@ public class ItemCatFacadeImpl implements ItemCatFacade{
 	@Autowired
 	private ItemCatBiz itemCatBiz;
 	
+	@Autowired
+	private RedisService redisService;
+	
 	@Override
 	public List<ItemCat> listItemsByParentId(Long parentId) {
 		ItemCat record = new ItemCat();
@@ -37,9 +44,22 @@ public class ItemCatFacadeImpl implements ItemCatFacade{
 	public ItemCat getItemById(Long cid) {
 		return itemCatBiz.getById(cid);
 	}
-
+	
+	
 	@Override
 	public IndexVO listIndexItemCat() {
+			
+			//先从缓存中命中，如果命中就返回，没有命中继续
+			try {
+				String cacheData = this.redisService.get(CacheConsts.SUNING_MANAGE_ITEM_CAT_API);
+				if (StringUtils.isNotEmpty(cacheData)) {
+					//命中TODO
+					return JSON.parseObject(cacheData, IndexVO.class);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			IndexVO indexVO = new IndexVO();
 			// 全部查出，并且在内存中生成树形结构
 			List<ItemCat> cats = itemCatBiz.listAll();
@@ -98,6 +118,14 @@ public class ItemCatFacadeImpl implements ItemCatFacade{
 					break;
 				}
 			}
+			//将数据库的查询结果集写入到缓存中 缓存时间3个月
+			System.out.println("写入:" + JSON.toJSONString(indexVO));
+			try {
+				this.redisService.set(CacheConsts.SUNING_MANAGE_ITEM_CAT_API,JSON.toJSONString(indexVO), CacheConsts.ITEM_CAT_TIME);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			return indexVO;
 		}
 

@@ -2,7 +2,11 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
+		<settings>
+			<setting name="mapUnderscoreToCamelCase" value="true" />
+		</settings>
 	<!-- 分页助手 -->
 	<plugins>
 		<plugin interceptor="com.github.pagehelper.PageInterceptor">
@@ -24,4 +28,5 @@
 		<property name="Oracle" value="oracle" />
 		<property name="SQL Server" value="sqlserver" />
 	</databaseIdProvider>
+
 </configuration>

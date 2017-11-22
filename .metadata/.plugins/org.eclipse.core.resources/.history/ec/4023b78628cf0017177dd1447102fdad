@@ -1,0 +1,5 @@
+package com.suning.common.constant;
+
+public class CacheConsts {
+
+}
